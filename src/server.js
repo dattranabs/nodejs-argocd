@@ -11,6 +11,7 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.get("/", (req, res) => {
   res.send("Hello from Node.js & MongoDB!, version 2");
+  console.log("Api called.");
 });
 
 app.listen(PORT, () => {
