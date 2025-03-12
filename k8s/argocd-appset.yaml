@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: nodejs-mongodb-applicationset
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - name: mongodb-app
+            path: k8s/mongodb
+          - name: nodejs-app
+            path: k8s/nodejs
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/dattranabs/nodejs-argocd.git
+        targetRevision: main
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
