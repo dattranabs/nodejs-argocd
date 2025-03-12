@@ -10,7 +10,7 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch(err => console.error("MongoDB connection error:", err));
 
 app.get("/", (req, res) => {
-  res.send("Hello from Node.js & MongoDB!");
+  res.send("Hello from Node.js & MongoDB!, version 2");
 });
 
 app.listen(PORT, () => {
